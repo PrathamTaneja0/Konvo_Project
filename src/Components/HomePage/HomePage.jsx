@@ -1,37 +1,79 @@
 import React from "react";
-import { Grid } from "@mui/material";
+import { Grid, Container } from "@mui/material";
 import Navigation from "../Navigation/Navigation";
 import HomeSection from "../HomeSection/HomeSection";
+import RightPart from "../RightPart/RightPart";
+import { Route, Routes } from "react-router-dom";
+import Profile from "../Profile/Profile";
 
 export default function HomePage() {
   return (
-    <Grid container spacing={4} alignItems="flex-start" className="px-5 lg:px-36" sx={{ borderLeft: '1px solid #eff3f4', borderRight: '1px solid #eff3f4' }}>
-      {/* Left Sidebar: Hidden on xs, visible on lg+ */}
-      <Grid item xs={0} lg={3} sx={{ 
-        display: { xs: "none", lg: "block" }, 
-        height: '100vh',
-        borderRight: '1px solid #eff3f4',
-        paddingRight: 2
-      }}>
-        <Navigation />
+    <Container
+      maxWidth="xl"
+      sx={{
+        pl: { xs: 3, md: 8 },
+        pr: { xs: 1, md: 2 },
+      }}
+    >
+      <Grid container columns={12}>
+        {/* Left Navigation */}
+        <Grid
+          item
+          xs={0}
+          md={3}
+          sx={{
+            display: { xs: "none", md: "block" },
+            position: "sticky",
+            top: 0,
+            height: "100vh",
+            borderRight: "1px solid #eff3f4",
+            pl: { md: 2, lg: 4 },
+            bgcolor: "background.paper",
+          }}
+        >
+          <Navigation />
+        </Grid>
+
+        {/* Main Content */}
+        <Grid
+          item
+          xs={12}
+          md={6}
+          sx={{
+            minHeight: "100vh",
+            borderRight: "1px solid #eff3f4",
+            borderLeft: { xs: "1px solid #eff3f4", md: "none" },
+            px: { xs: 0, md: 2 },
+            bgcolor: "background.paper",
+            maxWidth: 700,
+            width: '100%',
+            margin: '0 auto',
+          }}
+        >
+          <Routes>
+            <Route path="/" element={<HomeSection />} />
+            <Route path="/profile/:id" element={<Profile />} />
+          </Routes>
+        </Grid>
+
+        {/* Right Section */}
+        <Grid
+          item
+          xs={0}
+          md={3}
+          sx={{
+            display: { xs: "none", md: "block" },
+            position: "sticky",
+            top: 0,
+            height: "100vh",
+            pl: { md: 2, lg: 4 },
+            bgcolor: "background.paper",
+            maxWidth: 350,
+          }}
+        >
+          <RightPart />
+        </Grid>
       </Grid>
-      {/* Main Content: Full width on mobile, centered on desktop */}
-      <Grid item xs={12} lg={6} sx={{ 
-        minHeight: '100vh',
-      }}>
-        <HomeSection />
-      </Grid>
-      {/* Right Sidebar: Hidden on xs, visible on lg+ */}
-      <Grid item xs={0} lg={3} sx={{ 
-        display: { xs: "none", lg: "block" }, 
-        height: '100vh',
-        borderLeft: '1px solid #eff3f4',
-        paddingLeft: 2
-      }}>
-        <div style={{ width: '100%' }}>
-          <p>right</p>
-        </div>
-      </Grid>
-    </Grid>
+    </Container>
   );
 }

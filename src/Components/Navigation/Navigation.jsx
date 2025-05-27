@@ -21,42 +21,43 @@ const Navigation = () => {
     handleClose();
   };
   return (
-    <div className="h-screen sticky top-0">
-      <div className="py-5">
-        <img
-          src={logo}
-          alt="logo"
-          className=" "
-          width={50}
-          height={50}
-        />
-      </div>
-
-      <div className="space-y-6">
-        {navigationMenu.map((item) => (
-          <div
-            key={item.path}
-            className="cursor-pointer flex space-x-3 items-center"
-            onClick={() =>
-              item.title === "Profile"
-                ? navigate(`/profile/${50}`)
-                : navigate(item.path)
-            }
+    <div className="h-screen sticky top-0 flex flex-col justify-between px-4">
+      <div>
+        <div className="py-5 flex">
+          <img
+            src={logo}
+            alt="logo"
+            className=" "
+            width={50}
+            height={50}
+          />
+        </div>
+        <div className="space-y-6">
+          {navigationMenu.map((item) => (
+            <div
+              key={item.path}
+              className="cursor-pointer flex space-x-3 items-center"
+              onClick={() =>
+                item.title === "Profile"
+                  ? navigate(`/profile/${50}`)
+                  : navigate(item.path)
+              }
+            >
+              {item.icon}
+              <p className="text-xl">{item.title}</p>
+            </div>
+          ))}
+        </div>
+        <div className="py-6 flex justify-center">
+          <Button
+            sx={{ width: "100%", borderRadius: "29px", py: "15px", bgcolor: 'light blue', px: 3 }}
+            variant="contained"
           >
-            {item.icon}
-            <p className="text-xl">{item.title}</p>
-          </div>
-        ))}
+            Post
+          </Button>
+        </div>
       </div>
-      <div className="py-10">
-        <Button
-          sx={{ width: "100%", borderRadius: "29px", py: "15px", bgcolor: 'light blue' }}
-          variant="contained"
-        >
-          Post
-        </Button>
-      </div>
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between mb-4">
         <div className="flex items-center space-x-3">
           <Avatar alt="username" src={userIcon} />
         </div>
