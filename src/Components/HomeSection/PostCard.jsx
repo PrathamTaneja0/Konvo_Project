@@ -95,7 +95,7 @@ function PostCard() {
           </div>
 
           <div className="mt-2">
-            <div className="cursor-pointer">
+            <div className="cursor-pointer" onClick={() => navigate(`/tweet/1`)}>
               <p className="mb-2 p-0">Brain Rot code </p>
               <img
                 className="w-full max-w-2xl border border-gray-400 p-5 rounded-md"

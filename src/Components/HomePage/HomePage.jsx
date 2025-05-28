@@ -5,6 +5,7 @@ import HomeSection from "../HomeSection/HomeSection";
 import RightPart from "../RightPart/RightPart";
 import { Route, Routes } from "react-router-dom";
 import Profile from "../Profile/Profile";
+import PostDetails from "../PostDetails/PostDetails";
 
 export default function HomePage() {
   return (
@@ -52,7 +53,9 @@ export default function HomePage() {
         >
           <Routes>
             <Route path="/" element={<HomeSection />} />
+            <Route path="/home" element={<HomeSection />} />
             <Route path="/profile/:id" element={<Profile />} />
+            <Route path="/tweet/:id" element={<PostDetails />} />
           </Routes>
         </Grid>
 

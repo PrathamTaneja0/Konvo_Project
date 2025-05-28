@@ -49,7 +49,7 @@ const HomeSection = () => {
   }, [imagePreviewUrl]);
 
   return (
-    <div className="border-x border-gray-100">
+    <div >
       <div className="max-w-xl mx-auto px-4">
         <section>
           <h1 className="py-5 text-xl font-bold opacity-90">Home</h1>
@@ -100,10 +100,15 @@ const HomeSection = () => {
                           bgcolor: "#1a91da",
                         },
                       }}
+                      disabled={uploadedImage}
                     >
-                      Post
+                      {uploadedImage ? "Uploading..." : "Post"}
                     </Button>
                   </div>
+
+                  {uploadedImage && (
+                    <div className="mt-4 text-blue-500 font-semibold">Uploading image...</div>
+                  )}
 
                   {imagePreviewUrl && (
                     <div className="mt-4">
