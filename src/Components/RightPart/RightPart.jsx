@@ -2,8 +2,14 @@ import React from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import Brightness4Icon from '@mui/icons-material/Brightness6';
 import { Button } from '@mui/material';
+import SubscriptionM from '../SubscriptionM/SubscriptionM';
 
 const RightPart = () => {
+  const [openSubscriptionM, setOpenSubscriptionM] = React.useState(false);
+
+  const handleOpenSubscriptionM = () => setOpenSubscriptionM(true);
+  const handleCloseSubscriptionM = () => setOpenSubscriptionM(false);
+
   const handleChangeTheme = () => {
     console.log("Theme changed");
   }
@@ -27,6 +33,7 @@ const RightPart = () => {
         <h1 className='font-bold my-2'>Subscribe to unlock new Features</h1>
         <Button 
           variant='contained' 
+          onClick={handleOpenSubscriptionM}
           sx={{ 
             padding: "10px", 
             paddingX: "20px", 
@@ -60,6 +67,9 @@ const RightPart = () => {
             <p className='text-sm text-gray-500'>1.2M posts</p>
           </div>
         </div>
+      </section>
+      <section>
+        <SubscriptionM open={openSubscriptionM} handleClose={handleCloseSubscriptionM} />
       </section>
     </div>
   )

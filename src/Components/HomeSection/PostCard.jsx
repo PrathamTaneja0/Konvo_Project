@@ -11,12 +11,14 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 import FavouriteIcon from "@mui/icons-material/Favorite";
 import BarChartIcon from "@mui/icons-material/BarChart";
+import ReplyModal from "./ReplyModal";
 
 function PostCard() {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [isLiked, setIsLiked] = React.useState(false);
   const [isReposted, setIsReposted] = React.useState(false);
+  const [replyModalOpen, setReplyModalOpen] = React.useState(false);
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
@@ -24,7 +26,11 @@ function PostCard() {
   };
 
   const handleOpenReplyModel = () => {
-    console.log("Open Reply Model");
+    setReplyModalOpen(true);
+  };
+
+  const handleCloseReplyModel = () => {
+    setReplyModalOpen(false);
   };
 
   const handleClose = () => {
@@ -156,6 +162,9 @@ function PostCard() {
           </div>
         </div>
       </div>
+      {replyModalOpen && (
+        <ReplyModal open={replyModalOpen} onClose={handleCloseReplyModel} />
+      )}
     </div>
   );
 }
